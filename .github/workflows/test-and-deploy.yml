@@ -5,13 +5,16 @@ on:
 
 jobs:
   test:
+    name: Test
     uses: ./.github/workflows/test.yml
   test-deploy:
+    name: Deploy to test
     needs: test
     uses: ./.github/workflows/deploy.yml
     with:
       stage: test
   production-deploy:
+    name: Deploy to production
     needs: test-deploy
     uses: ./.github/workflows/deploy.yml
     with:

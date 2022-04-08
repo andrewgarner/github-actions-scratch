@@ -7,6 +7,12 @@ jobs:
   build:
     name: Build
     uses: ./.github/workflows/build.yml
+  dev-deploy:
+    name: Deploy to dev
+    needs: build
+    uses: ./.github/workflows/deploy.yml
+    with:
+      stage: dev
   test-deploy:
     name: Deploy to test
     needs: build

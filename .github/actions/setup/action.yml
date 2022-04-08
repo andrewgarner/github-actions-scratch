@@ -1,0 +1,16 @@
+name: Setup
+description: "Setup the project for the GitHub Actions workflow."
+branding:
+  icon: tool
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: yarn
+        check-latest: true
+        node-version: 14
+    - name: Install dependencies
+      run: yarn install
+      shell: bash

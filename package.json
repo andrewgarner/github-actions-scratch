@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "deploy": "echo 'DONE'",
     "test": "jest",
     "test:acceptance": "jest --selectProjects Acceptance",
     "test:unit": "jest --selectProjects Unit"

@@ -1,0 +1,9 @@
+{
+  "name": "github-actions-scratch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/andrewgarner/github-actions-scratch.git",
+  "author": "Andrew Garner <andrew@andrewgarner.com>",
+  "license": "MIT",
+  "private": true
+}

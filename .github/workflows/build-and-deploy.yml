@@ -8,19 +8,19 @@ jobs:
     name: Build
     uses: ./.github/workflows/build.yml
   dev-deploy:
-    name: Deploy to dev
+    name: Development
     needs: build
     uses: ./.github/workflows/deploy.yml
     with:
       stage: dev
   test-deploy:
-    name: Deploy to test
+    name: Test
     needs: build
     uses: ./.github/workflows/deploy.yml
     with:
       stage: test
   production-deploy:
-    name: Deploy to production
+    name: Production
     needs: test-deploy
     uses: ./.github/workflows/deploy.yml
     with:

@@ -6,7 +6,25 @@ on:
 jobs:
   build:
     name: Build
-    uses: ./.github/workflows/build.yml
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tests:
+          - acceptance
+          - unit
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+          check-latest: true
+          node-version: 14
+      - name: Install dependencies
+        run: yarn install
+      - name: Run tests
+        run: yarn test:${{ matrix.tests }}
   dev-deploy:
     name: Development
     needs: build

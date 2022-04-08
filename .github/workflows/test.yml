@@ -7,6 +7,11 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tests:
+          - acceptance
+          - unit
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -19,4 +24,4 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Run tests
-        run: yarn test
+        run: yarn test:${{ matrix.tests }}

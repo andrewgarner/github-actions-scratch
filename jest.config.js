@@ -99,7 +99,20 @@ module.exports = {
     // preset: undefined,
 
     // Run tests from one or more projects
-    // projects: undefined,
+    projects: [
+        {
+            displayName: "Acceptance",
+            testMatch: [
+                "test/acceptance/**/*.+(ts|tsx|js|jsx)"
+            ]
+        },
+        {
+            displayName: "Unit",
+            testMatch: [
+                "test/unit/**/*.+(ts|tsx|js|jsx)"
+            ]
+        }
+    ],
 
     // Use this configuration option to add custom reporters to Jest
     // reporters: undefined,

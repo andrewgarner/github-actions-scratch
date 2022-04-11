@@ -3,7 +3,7 @@ name: Build and deploy
 on:
   push:
   schedule:
-    - cron: "15 8 * * *"
+    - cron: "6 9 * * *"
   workflow_dispatch:
     inputs:
       deploy_to_test:

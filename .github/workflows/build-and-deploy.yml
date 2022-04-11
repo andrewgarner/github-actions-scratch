@@ -45,11 +45,11 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       stage: test
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_to_test == true)
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_to_test == 'true')
   production-deploy:
     name: Production
     needs: test-deploy
     uses: ./.github/workflows/deploy.yml
     with:
       stage: production
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_to_prod == true)
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_to_prod == 'true')

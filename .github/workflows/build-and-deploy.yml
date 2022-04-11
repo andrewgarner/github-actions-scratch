@@ -1,7 +1,21 @@
 name: Build and deploy
 
 on:
-  - push
+  push:
+  schedule:
+    - cron: "15 8 * * *"
+  workflow_dispatch:
+    inputs:
+      deploy_to_test:
+        description: "Deploy to test environment"
+        type: boolean
+        default: true
+        required: false
+      deploy_to_prod:
+        description: "Deploy to production environment"
+        type: boolean
+        default: false
+        required: false
 
 jobs:
   build:
@@ -31,10 +45,11 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       stage: test
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.workflow_run.deploy_to_test == true)
   production-deploy:
     name: Production
     needs: test-deploy
     uses: ./.github/workflows/deploy.yml
     with:
       stage: production
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.workflow_run.deploy_to_prod == true)
